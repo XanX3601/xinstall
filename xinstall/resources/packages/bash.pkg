@@ -1,0 +1,2 @@
+CONFIG_TASKS:
+    copy_resource bashrc HOME/.bashrc
