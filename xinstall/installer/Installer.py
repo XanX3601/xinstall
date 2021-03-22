@@ -1,6 +1,8 @@
-import xinstall.worker as xworker
 import xinstall.installer as xinstaller
-import logging
+import xinstall.resources.logger as xlogger
+import xinstall.resources.paths as xpaths
+import xinstall.task as xtask
+import xinstall.worker as xworker
 
 
 class Installer:
@@ -45,15 +47,27 @@ class Installer:
         try:
             install_dict = self.install_dict()
         except Exception as e:
-            logging.critical(str(e))
+            xlogger.get_xinstall_logger().critical(str(e))
             exit(0)
+
+        pre_tasks = [
+            xtask.CreateDirectoryIfNotExist(str(xpaths.home_dir_path)),
+            xtask.CreateDirectoryIfNotExist(str(xpaths.repositories_dir_path)),
+            xtask.CreateDirectoryIfNotExist(str(xpaths.tarballs_dir_path)),
+        ]
+        worker = xworker.Worker(pre_tasks)
+        worker.work()
+        worker.wait_till_work_done()
+
+        if not worker.success:
+            raise xinstaller.InstallationIncomplete(self.package)
 
         for deep in range(len(install_dict) - 1, -1, -1):
             packages = install_dict[deep]
             workers = []
 
             for package in packages:
-                worker = xworker.Worker(package.tasks())
+                worker = xworker.Worker(package.install_tasks())
                 workers.append(worker)
                 worker.work()
 

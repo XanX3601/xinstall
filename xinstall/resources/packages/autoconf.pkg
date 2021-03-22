@@ -1,0 +1,10 @@
+INSTALL_TASKS:
+    download_file https://ftp.gnu.org/gnu/autoconf/autoconf-2.70.tar.gz TEMP/autoconf.tar.gz
+    remove_directory_if_exists TEMP/autoconf-2.70
+    extract_tar_file TEMP/autoconf.tar.gz TEMP
+    remove_directory_if_exists TARS/autoconf
+    copy_directory TEMP/autoconf-2.70 TARS/autoconf
+    config TARS/autoconf --prefix=HOME/.local
+    make TARS/autoconf
+    make TARS/autoconf install
+

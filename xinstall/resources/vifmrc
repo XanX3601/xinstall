@@ -1,0 +1,70 @@
+"General settings
+set vicmd=nvim " vifm default command line set to neovim
+set trash " trash directory
+set history=100 " number of directories in directory history
+set followlinks " follow symlinks directly
+set sortnumbers " sort number
+set undolevels=100 " undo levels
+set vimhelp " use vim help format
+set norunexec " do not launch executable by default
+colorscheme dracula
+set timefmt=%m/%d\ %H:%M " format display time
+set wildmenu " menu for command line completion
+set wildstyle=popup " menu style for command line completion
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers " suggestions
+" case rule when searching for pattern
+set ignorecase
+set smartcase
+set hlsearch " highlight search results
+set incsearch " highlight search results as typing
+set scrolloff=4
+set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  " " default statusline look
+set confirm=permdelete " only ask when delete operation is permanent
+set dotfiles " display dotfiles by default
+" Display line number and relative line number
+set relativenumber
+set number
+set quickview " display file preview on left / right
+
+"Bookmarks
+mark h ~/
+mark d ~/Documents
+
+"Default programs
+filetype *.jpg,*.jpeg,*.png,*.gif
+    \ {Opens using feh}
+    \ feh 
+    \     --borderless
+    \     --image-bg black
+    \     --quiet
+    \     --sort name
+    \     --start-at %f
+    \     %d
+
+filetype *.pdf zathura %f
+
+"Default fileviewers
+fileviewer *.jpg,*.jpeg,*.png,*.gif
+    \ identify %f
+
+fileviewer *.pdf pdftotext -nopgbrk %c -
+
+
+" What should be saved automatically between vifm sessions.  Drop "savedirs"
+" value if you don't want vifm to remember last visited directories for you.
+set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
+    \phistory,fhistory,dirstack,registers,bookmarks,bmarks
+
+"Keybidings
+nnoremap S :sort<cr>
+" toggle visibility of preview window
+nnoremap w :view<cr>
+vnoremap w :view<cr>gv
+" open file in the background using its default program
+nnoremap o :file &<cr>l
+" create new file
+nnoremap nf :touch<space>
+nnoremap nd :mkdir<space>
+" rename
+nnoremap r cw<C-u>
+nnoremap <esc> <esc>:q<cr>

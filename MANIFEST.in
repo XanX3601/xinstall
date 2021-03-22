@@ -1,0 +1,3 @@
+recursive-include xinstall/resources *.pkg *.md
+recursive-include xinstall/resources nvimrc
+recursive-include xinstall/resources vifmrc

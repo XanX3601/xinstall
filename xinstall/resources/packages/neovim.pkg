@@ -1,0 +1,15 @@
+INSTALL_TASKS:
+    git_clone_if_not_exists https://github.com/neovim/neovim.git REPOS/neovim
+    git_update REPOS/neovim
+    remove_directory_if_exists REPOS/neovim/build
+    make REPOS/neovim CMAKE_INSTALL_PREFIX=HOME/.local
+    make REPOS/neovim install
+
+CONFIG_TASKS:
+    create_directory_if_not_exist HOME/.config
+    create_directory_if_not_exist HOME/.config/nvim
+    copy_resource nvimrc HOME/.config/nvim/init.vim
+
+DEPENDENCIES:
+    automake
+    libtool

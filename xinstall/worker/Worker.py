@@ -1,4 +1,5 @@
 import multiprocessing
+import ctypes
 
 
 class Worker:
@@ -12,21 +13,23 @@ class Worker:
         """Inits a worker."""
         self.tasks = tasks
         self.__process = None
-        self.success = None
+        self.success = multiprocessing.Value(ctypes.c_bool, None)
 
     def work(self):
         """Launches the worker."""
 
-        def __work(tasks):
+        def __work(tasks, success):
             for task in tasks:
                 success = task.run()
                 if not success:
-                    self.success = False
+                    success = False
                     return
-            self.success = True
+            success = True
 
-        self.__process = multiprocessing.Process(target=__work, args=(self.tasks,))
-        self.__process.run()
+        self.__process = multiprocessing.Process(
+            target=__work, args=(self.tasks, self.success)
+        )
+        self.__process.start()
 
     def wait_till_work_done(self):
         """Waits for the worker to end its tasks."""

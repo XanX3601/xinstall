@@ -1,6 +1,7 @@
 import importlib.resources as pkg_resources
-import xinstall.resources.descriptions as xdescriptions
 import multiprocessing
+
+import xinstall.resources.descriptions as xdescriptions
 
 
 class Package:
@@ -10,7 +11,7 @@ class Package:
         name: a string containing the name of the package.
     """
 
-    def __init__(self, name, tasks, dependencies):
+    def __init__(self, name, install_tasks, dependencies, config_tasks):
         """Inits a package with given parameters.
 
         Args:
@@ -20,12 +21,13 @@ class Package:
               Aka, packages that need to be installed before the current one.
         """
         self.name = name
-        self._tasks = tasks
+        self._install_tasks = install_tasks
         self._dependencies = dependencies
+        self._config_tasks = config_tasks
 
-    def tasks(self):
+    def install_tasks(self):
         """Returns the list of tasks to install the package."""
-        return self._tasks
+        return self._install_tasks
 
     def dependencies(self):
         """Returns the set of dependencies of the package."""
@@ -46,14 +48,10 @@ class Package:
         ``xconfigurator.resources.descriptions``. The description is expected to
         be in a file named ``package_name.md``.
         """
-        if not pkg_resources.is_resource(
-            xdescriptions, "{}.md".format(self.name)
-        ):
+        if not pkg_resources.is_resource(xdescriptions, "{}.md".format(self.name)):
             return "No description available."
 
-        with pkg_resources.path(
-            xdescriptions, "{}.md".format(self.name)
-        ) as path:
+        with pkg_resources.path(xdescriptions, "{}.md".format(self.name)) as path:
             return path.read_text(encoding="utf-8")
 
     def __str__(self):
@@ -61,3 +59,7 @@ class Package:
 
     def __repr__(self):
         return self.name
+
+    def config_tasks(self):
+        """Returns the list of tasks to configure the package."""
+        return self._config_tasks

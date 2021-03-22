@@ -1,0 +1,10 @@
+INSTALL_TASKS:
+    download_file https://invisible-island.net/datafiles/release/ncurses.tar.gz TEMP/ncurses.tar.gz
+    remove_directory_if_exists TEMP/ncurses-6.2
+    extract_tar_file TEMP/ncurses.tar.gz TEMP
+    remove_directory_if_exists TARS/ncurses
+    copy_directory TEMP/ncurses-6.2 TARS/ncurses
+    config TARS/ncurses --prefix=HOME/.local --with-shared --enable-widec
+    make TARS/ncurses
+    make TARS/ncurses install
+

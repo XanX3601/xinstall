@@ -1,0 +1,10 @@
+INSTALL_TASKS:
+    download_file https://ftpmirror.gnu.org/libtool/libtool-2.4.6.tar.gz TEMP/libtool_tarball.tar.gz
+    remove_directory_if_exists TEMP/libtool-2.4.6
+    extract_tar_file TEMP/libtool_tarball.tar.gz TEMP
+    remove_directory_if_exists TARS/libtool
+    copy_directory TEMP/libtool-2.4.6 TARS/libtool
+    config TARS/libtool --prefix=HOME/.local
+    make TARS/libtool
+    make TARS/libtool install
+

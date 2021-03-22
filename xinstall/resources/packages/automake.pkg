@@ -1,0 +1,12 @@
+INSTALL_TASKS:
+    download_file https://ftp.gnu.org/gnu/automake/automake-1.16.3.tar.gz TEMP/automake.tar.gz
+    remove_directory_if_exists TEMP/automake-1.16.3
+    extract_tar_file TEMP/automake.tar.gz TEMP
+    remove_directory_if_exists TARS/automake
+    copy_directory TEMP/automake-1.16.3 TARS/automake
+    config TARS/automake --prefix=HOME/.local
+    make TARS/automake
+    make TARS/automake install
+
+DEPENDENCIES:
+    autoconf

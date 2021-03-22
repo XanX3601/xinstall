@@ -12,10 +12,8 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/XanX3601/xconfigurator",
+    include_package_data=True,
     packages=setuptools.find_packages(),
-    package_data={
-        "": ["*.txt", "*.pkg"],
-    },
     entry_points={"console_scripts": ["xinstall=xinstall.main:main"]},
-    install_requires=["click", "rich"],
+    install_requires=["click", "rich", "GitPython", "requests"],
 )

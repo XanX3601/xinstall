@@ -1,0 +1,17 @@
+INSTALL_TASKS:
+    git_clone_if_not_exists https://github.com/vifm/vifm.git REPOS/vifm
+    git_remove_changes REPOS/vifm
+    git_update REPOS/vifm
+    autoreconf REPOS/vifm -f -i
+    configure REPOS/vifm --prefix=HOME/.local --with-curses=HOME/.local
+    make REPOS/vifm CMAKE_INSTALL_PREFIX=HOME/.local
+    make REPOS/vifm install
+
+CONFIG_TASKS:
+    create_directory_if_not_exist HOME/.config
+    create_directory_if_not_exist HOME/.config/vifm
+    copy_resource vifmrc HOME/.config/vifm/vifmrc
+
+DEPENDENCIES:
+    autoconf
+    ncurses

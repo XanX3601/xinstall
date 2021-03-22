@@ -1,5 +1,6 @@
 class InstallationIncomplete(Exception):
     """Raised when the installation of a package is incomplete."""
+
     def __init__(self, package):
         self.package = package
 
