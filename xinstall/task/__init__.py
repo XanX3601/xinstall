@@ -2,6 +2,7 @@ from .Task import Task
 from .Autoreconf import Autoreconf
 from .Config import Config
 from .CopyDirectory import CopyDirectory
+from .CopyDirectoryForce import CopyDirectoryForce
 from .CreateDirectoryIfNotExist import CreateDirectoryIfNotExist
 from .DownloadFile import DownloadFile
 from .ExtractTarFile import ExtractTarFile

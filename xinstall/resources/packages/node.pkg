@@ -1,0 +1,6 @@
+INSTALL_TASKS:
+    download_file https://nodejs.org/dist/v14.16.0/node-v14.16.0-linux-x64.tar.xz TEMP/node.tar.xz
+    remove_directory_if_exists TEMP/node-v14.16.0-linux-x64
+    extract_tar_file TEMP/node.tar.xz TEMP
+    remove_directory_if_exists HOME/node
+    copy_directory_force TEMP/node-v14.16.0-linux-x64 HOME/.local
