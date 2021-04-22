@@ -22,6 +22,10 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'vifm/vifm.vim'
     " vim-buftabline
     Plug 'ap/vim-buftabline'
+    " vim-isort
+    Plug 'stsewd/isort.nvim', { 'do': ':UpdateRemotePlugins' }
+    " nvim-ghost
+    Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
 call plug#end()
 
 "Plugins options
@@ -54,7 +58,11 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-" vifm
+
+" nvim-ghost
+augroup nvim_ghost_user_autocommands
+    au User www.overleaf.com set filetype=tex
+augroup END
 
 "Transparency
 let t:is_transparent = 0

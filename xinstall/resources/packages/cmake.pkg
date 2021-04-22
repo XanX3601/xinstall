@@ -1,0 +1,10 @@
+INSTALL_TASKS:
+    download_file https://github.com/Kitware/CMake/releases/download/v3.20.1/cmake-3.20.1.tar.gz TEMP/cmake.tar.gz 
+    remove_directory_if_exists TEMP/cmake-3.20.1
+    extract_tar_file TEMP/cmake.tar.gz TEMP
+    remove_directory_if_exists TARS/cmake
+    copy_directory TEMP/cmake-3.20.1 TARS/cmake
+    bootstrap TARS/cmake --prefix=HOME/.local
+    make TARS/cmake
+    make TARS/cmake install
+

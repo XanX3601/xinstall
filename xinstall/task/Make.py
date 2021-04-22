@@ -10,11 +10,7 @@ class Make(xtask.Task):
         """See Task.__init__"""
         super().__init__()
         self.directory_path = xtask.parse_path(directory_path)
-
-        self.args = []
-        for arg in args:
-            arg = xtask.task_variables_to_value(arg)
-            self.args.append(arg)
+        self.args = [xtask.task_variables_to_value(arg) for arg in args]
 
     def run(self):
         """See Task.run"""

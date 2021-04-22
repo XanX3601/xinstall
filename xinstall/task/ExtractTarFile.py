@@ -21,8 +21,12 @@ class ExtractTarFile(xtask.Task):
     def run(self):
         """See `Task.run`."""
 
-        self._info("Opening tarfile {}".format(self.tarfile_path))
-        tar = tarfile.open(self.tarfile_path)
+        try:
+            self._info("Opening tarfile {}".format(self.tarfile_path))
+            tar = tarfile.open(self.tarfile_path)
+        except Exception:
+            self._exception("An error occured while opening the file")
+            return False
 
         try:
             self._info("Extracting tarfile in {}".format(self.extract_path))

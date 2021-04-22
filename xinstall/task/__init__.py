@@ -16,3 +16,6 @@ from .utils import parse_path, str_to_task, task_variables_to_value
 from .variables import task_variables
 from .WrongTaskArgs import WrongTaskArgs
 from .CopyResource import CopyResource
+from .Process import Process
+from .Bootstrap import Bootstrap
+from .Cmake import Cmake

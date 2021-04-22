@@ -1,0 +1,4 @@
+CONFIG_TASKS:
+    create_directory_if_not_exist HOME/.config
+    create_directory_if_not_exist HOME/.config/i3
+    copy_resource i3config HOME/.config/i3/config

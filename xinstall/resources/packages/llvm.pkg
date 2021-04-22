@@ -1,0 +1,6 @@
+INSTALL_TASKS:
+    download_file https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz TEMP/llvm.tar.gz
+    remove_directory_if_exists TEMP/clang+llvm-12.0.0-x86_64-linux-gnu-ubtuntu-20.04
+    extract_tar_file TEMP/llvm.tar.gz TEMP
+    remove_directory_if_exists TARS/llvm
+    copy_directory_force TEMP/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04 HOME/.local

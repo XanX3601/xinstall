@@ -1,0 +1,20 @@
+INSTALL_TASKS:
+    download_file http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz TEMP/texlive.tar.gz
+    remove_directory_if_exists TEMP/install-tl-20210415
+    extract_tar_file TEMP/texlive.tar.gz TEMP
+    remove_directory_if_exists TARS/texlive
+    copy_directory TEMP/install-tl-YYYYMMDD TARS/texlive
+    process install-tl start TARS/texlive perl install-tl
+    process install-tl if Import settings then n
+    process install-tl search Enter command:
+    process install-tl send D
+    process install-tl search Enter command:
+    process install-tl send 1
+    process install-tl search New value for TEXDIR
+    process install-tl send HOME/texlive
+    process install-tl search Enter command:
+    process install-tl send R
+    process install-tl search Enter command:
+    process install-tl send I
+    process install-tl wait
+    process install-tl success

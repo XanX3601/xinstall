@@ -2,3 +2,4 @@ click
 rich
 GitPython
 requests
+pexpect

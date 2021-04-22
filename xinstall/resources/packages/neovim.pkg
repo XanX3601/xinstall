@@ -13,3 +13,6 @@ CONFIG_TASKS:
 DEPENDENCIES:
     automake
     libtool
+    texlive
+    llvm
+
