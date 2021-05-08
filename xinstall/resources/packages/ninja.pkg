@@ -1,0 +1,5 @@
+INSTALL_TASKS:
+    git_clone_if_not_exists git://github.com/ninja-build/ninja.git REPOS/ninja
+    git_update REPOS/ninja
+    cmake REPOS/ninja -Bbuild-cmake -H.
+    cmake REPOS/ninja --build build-cmake
