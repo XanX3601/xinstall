@@ -15,11 +15,16 @@ class Config(xtask.Task):
 
     def run(self):
         """See Task.run"""
-        args = ["./configure"] + self.args
-
         if not self.directory_path.exists():
             self._error("Location {} does not exist".format(self.directory_path))
             return False
+
+        if (self.directory_path / "configure").is_file():
+            args = ["./configure"] + self.args
+        elif (self.directory_path / "config").is_file():
+            args = ["./config"] + self.args
+        else:
+            self._error("No configure file found in {}".format(self.directory_path))
 
         self._info(
             "Calling '{}' in directory {}".format(" ".join(args), self.directory_path)
