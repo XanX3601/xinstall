@@ -29,7 +29,7 @@ class RemoveDirectoryIfExists(xtask.Task):
             )
             return True
 
-        self._info("Removing directory '{}'".format(self.directory_path))
+        self._info("Removing directory {}".format(self.directory_path))
         try:
             shutil.rmtree(self.directory_path)
         except Exception:

@@ -19,3 +19,5 @@ from .CopyResource import CopyResource
 from .Process import Process
 from .Bootstrap import Bootstrap
 from .Cmake import Cmake
+from .SymLink import SymLink
+from .RemoveFileIfExists import RemoveFileIfExists

@@ -37,4 +37,11 @@ class CopyDirectoryForce(xtask.Task):
                 destination_path = destination_dir_path.joinpath(filename)
 
                 self._info("Copying {} to {}".format(file_path, destination_path))
-                shutil.copy(file_path, destination_path)
+
+                try:
+                    shutil.copy(file_path, destination_path)
+                except Exception:
+                    self._exception("An error occured during the copy of {} to {}.".format(file_path, destination_path))
+                    return False
+
+        return True

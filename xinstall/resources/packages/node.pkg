@@ -4,3 +4,7 @@ INSTALL_TASKS:
     extract_tar_file TEMP/node.tar.xz TEMP
     remove_directory_if_exists HOME/node
     copy_directory_force TEMP/node-v14.17.5-linux-x64 HOME/.local
+    remove_file_if_exists HOME/.local/bin/npm
+    sym_link HOME/.local/bin/npm HOME/.local/lib/node_modules/npm/bin/npm-cli.js
+    remove_file_if_exists HOME/.local/bin/npx
+    sym_link HOME/.local/bin/npx HOME/.local/lib/node_modules/npm/bin/npx-cli.js
