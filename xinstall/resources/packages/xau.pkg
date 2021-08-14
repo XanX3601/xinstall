@@ -1,0 +1,13 @@
+INSTALL_TASKS:
+    download_file https://www.x.org/pub/individual/lib/libXau-1.0.9.tar.bz2 TEMP/xau.tar.bz2
+    remove_directory_if_exists TEMP/libXau-1.0.9
+    extract_tar_file TEMP/xau.tar.bz2 TEMP
+    remove_directory_if_exists TARS/xau
+    copy_directory TEMP/libXau-1.0.9 TARS/xau
+    config TARS/xau --prefix=HOME/.local
+    make TARS/xau
+    make TARS/xau install
+
+DEPENDENCIES:
+    xproto
+
