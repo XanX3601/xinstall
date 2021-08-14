@@ -8,3 +8,5 @@ INSTALL_TASKS:
     make TARS/cmake
     make TARS/cmake install
 
+DEPENDENCIES:
+    openssl
