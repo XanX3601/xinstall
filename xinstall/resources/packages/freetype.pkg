@@ -1,0 +1,9 @@
+INSTALL_TASKS:
+    download_file https://download.savannah.gnu.org/releases/freetype/freetype-2.10.4.tar.gz TEMP/freetype.tar.gz
+    remove_directory_if_exists TEMP/freetype-2.10.4
+    extract_tar_file TEMP/freetype.tar.gz TEMP/
+    remove_directory_if_exists TARS/freetype
+    copy_directory TEMP/freetype-2.10.4 TARS/freetype
+    config TARS/freetype --prefix=HOME/.local
+    make TARS/freetype
+    make TARS/freetype install
