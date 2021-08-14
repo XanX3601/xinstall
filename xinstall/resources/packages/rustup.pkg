@@ -1,0 +1,5 @@
+INSTALL_TASKS:
+    download_file https://sh.rustup.rs TEMP/rustup.rs
+    process install-rustup start TEMP/ sh rustup.rs
+    process install-rustup search >
+    process install-rustup send 1
