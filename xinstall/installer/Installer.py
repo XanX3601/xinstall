@@ -3,7 +3,7 @@ import xinstall.resources.logger as xlogger
 import xinstall.resources.paths as xpaths
 import xinstall.task as xtask
 import xinstall.worker as xworker
-
+import xinstall.package as xpackage
 
 class Installer:
     """Install a package with or without its dependencies."""
@@ -12,6 +12,7 @@ class Installer:
         """Inits an installer."""
         self.package = package
         self.with_dependencies = with_dependencies
+        self._logger = xlogger.get_xinstall_logger()
 
     def install_dict(self):
         """Computes a dictionnary mapping deep to a list of packages.
@@ -47,7 +48,7 @@ class Installer:
         try:
             install_dict = self.install_dict()
         except Exception as e:
-            xlogger.get_xinstall_logger().critical(str(e))
+            self._logger.exception(e)
             exit(0)
 
         pre_tasks = [
@@ -67,9 +68,13 @@ class Installer:
             workers = []
 
             for package in packages:
-                worker = xworker.Worker(package.install_tasks())
-                workers.append(worker)
-                worker.work()
+                try:
+                    worker = xworker.Worker(package.install_tasks())
+                    workers.append(worker)
+                    worker.work()
+                except xpackage.ReadingTasksError as e:
+                    self._logger.exception(e)
+                    exit(0)
 
             for worker in workers:
                 worker.wait_till_work_done()

@@ -1,0 +1,9 @@
+INSTALL_TASKS:
+    download_file https://xorg.freedesktop.org/archive/individual/proto/xcb-proto-1.14.1.tar.xz TEMP/xcb-proto.tar.xz
+    remove_directory_if_exists TEMP/xcb-proto-1.14.1
+    extract_tar_file TEMP/xcb-proto.tar.xz TEMP
+    remove_directory_if_exists TARS/xcb-proto
+    copy_directory TEMP/xcb-proto-1.14.1 TARS/xcb-proto
+    config TARS/xcb-proto --prefix=HOME/.local
+    make TARS/xcb-proto
+    make TARS/xcb-proto install

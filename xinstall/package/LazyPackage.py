@@ -78,7 +78,7 @@ class LazyPackage(xpackage.Package):
                             pass
                         except xtask.WrongTaskArgs as exception:
                             raise xpackage.ReadingTasksError(
-                                "Could not read tasks of package {}".format(self.name)
+                                    self
                             )
 
     def __read_dependencies(self):
