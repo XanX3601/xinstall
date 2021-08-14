@@ -127,6 +127,5 @@ export INFOPATH="$TEXLIVE_HOME/texmf-dist/doc/info:$INFOPATH"
 CARGO_HOME="$HOME/.cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
 
-# flag for compiling fontconfig
-export FREETYPE_CFLAGS="-I$HOME/.local/include/freetype2"
-export FREETYPE_LIBS="-L$HOME/.local/lib -lfreetype"
+# pkg config
+export PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig"
