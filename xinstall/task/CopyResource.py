@@ -16,7 +16,7 @@ class CopyResource(xtask.Task):
     def run(self):
         """See `Task.run`"""
         if not pkg_resources.is_resource(xresources, self.resource_name):
-            self._error("Resource '{}' does not exist".format_map(self.resource_name))
+            self._error("Resource '{}' does not exist".format(self.resource_name))
             return False
 
         with pkg_resources.path(xresources, self.resource_name) as path:
