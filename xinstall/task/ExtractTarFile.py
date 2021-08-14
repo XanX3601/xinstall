@@ -20,6 +20,9 @@ class ExtractTarFile(xtask.Task):
 
     def run(self):
         """See `Task.run`."""
+        if not self.tarfile_path.exists():
+            self._error("Location {} does not exist".format(self.tarfile_path))
+            return False
 
         try:
             self._info("Opening tarfile {}".format(self.tarfile_path))
