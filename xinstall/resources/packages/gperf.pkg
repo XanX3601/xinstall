@@ -1,0 +1,9 @@
+INSTALL_TASKS:
+    download_file http://ftp.gnu.org/pub/gnu/gperf/gperf-3.1.tar.gz TEMP/gperf.tar.gz
+    remove_directory_if_exists TEMP/gperf-3.1
+    extract_tar_file TEMP/gperf.tar.gz TEMP
+    remove_directory_if_exists TARS/gperf
+    copy_directory TEMP/gperf-3.1 TARS/gperf
+    config TARS/gperf --prefix=HOME/.local
+    make TARS/gperf
+    make TARS/gperf install
