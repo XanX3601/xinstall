@@ -1,0 +1,10 @@
+INSTALL_TASKS:
+    download_file https://www.x.org/archive/individual/proto/xproto-7.0.31.tar.gz TEMP/xproto.tar.gz
+    remove_directory_if_exists TEMP/xproto-7.0.31
+    extract_tar_file TEMP/xproto.tar.gz TEMP
+    remove_directory_if_exists TARS/xproto
+    copy_directory TEMP/xproto-7.0.31 TARS/xproto
+    config TARS/xproto --prefix=HOME/.local
+    make TARS/xproto
+    make TARS/xproto install
+
