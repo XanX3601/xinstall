@@ -11,8 +11,10 @@ CONFIG_TASKS:
     copy_resource nvimrc HOME/.config/nvim/init.vim
 
 DEPENDENCIES:
+    node
+    vifm
+    cmake 
     automake
     libtool
-    texlive
     llvm
 
