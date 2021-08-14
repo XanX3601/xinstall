@@ -1,0 +1,13 @@
+INSTALL_TASKS:
+    download_file https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.13.94.tar.gz TEMP/fontconfig.tar.gz
+    remove_directory_if_exists TEMP/fontconfig-2.13.94
+    extract_tar_file TEMP/fontconfig.tar.gz TEMP
+    remove_directory_if_exists TARS/fontconfig
+    copy_directory TEMP/fontconfig-2.13.94 TARS/fontconfig
+    config TARS/fontconfig --prefix=HOME/.local
+    make TARS/fontconfig
+    make TARS/fontconfig install
+
+DEPENDENCIES:
+    freetype
+    gperf

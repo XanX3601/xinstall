@@ -122,3 +122,7 @@ TEXLIVE_HOME="$HOME/texlive"
 export PATH="$TEXLIVE_HOME/bin/x86_64-linux/:$PATH"
 export MANPATH="$TEXLIVE_HOME/texmf-dist/doc/man:$MANPATH"
 export INFOPATH="$TEXLIVE_HOME/texmf-dist/doc/info:$INFOPATH"
+
+# flag for compiling fontconfig
+export FREETYPE_CFLAGS="-I$HOME/.local/include/freetype2"
+export FREETYPE_LIBS="-L$HOME/.local/lib -lfreetype"
