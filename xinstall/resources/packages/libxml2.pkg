@@ -1,9 +1,0 @@
-INSTALL_TASKS:
-    git_clone_if_not_exists https://gitlab.gnome.org/GNOME/libxml2.git REPOS/libxml2
-    git_remove_changes REPOS/libxml2
-    git_update REPOS/libxml2
-    process config_xml2 start REPOS/libxml2 ./autogen.sh --prefix=HOME/.local
-    process config_xml2 wait
-    process config_xml2 success
-    make REPOS/libxml2
-    make REPOS/libxml2 install
