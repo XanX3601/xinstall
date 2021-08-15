@@ -5,6 +5,7 @@ import xinstall.task as xtask
 import xinstall.worker as xworker
 import xinstall.package as xpackage
 
+
 class Installer:
     """Install a package with or without its dependencies."""
 
@@ -72,7 +73,7 @@ class Installer:
                     worker = xworker.Worker(package.install_tasks())
                     workers.append(worker)
                     worker.work()
-                except xpackage.ReadingTasksError as e:
+                except Exception as e:
                     self._logger.exception(e)
                     exit(0)
 

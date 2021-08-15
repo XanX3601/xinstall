@@ -53,7 +53,7 @@ def str_to_task(string_task):
 
     The expected format of the string is the following:
 
-        TaskType task_name [args...]
+        TaskType [args...]
 
     Args:
         string_task: the string containing the task to read.
@@ -61,11 +61,12 @@ def str_to_task(string_task):
     Raises:
         NotATask: if the type of the taks is unknown.
         WrongTaskArgs: if a task cannot be instanciated from the string.
+        WrongTaskFormat: if the string task is wrongly formatted
 
     Retuns:
         A task.
     """
-    string_task = string_task.split()
+    string_task = split_string_task(string_task)
 
     if not string_task:
         raise ValueError("Received empty string")
@@ -98,3 +99,76 @@ def task_variables_to_value(string):
         string = string.replace(variable, value)
 
     return string
+
+
+def split_string_task(string_task):
+    """Splits a string task by cutting the space characters.
+
+    The string task is plit around spaces so the expected format is:
+
+        TaskType [args...]
+
+    An arg put in quotes will keep its spaces and quotes will be removed
+    An arg put in double quotes will keep its spaces.
+    Every quotes in a double quoted arg are escaped.
+    Every double quotes in a quoted arg are escaped.
+
+    Args:
+        string_task: the string task to split
+
+    Raises:
+        WrongTaskFormat: if a quoted argument is not properly opened or closed
+
+    Returns:
+        the string task split as a list of arguments
+    """
+    string_task_split_input = string_task.split()
+    string_task_split_output = []
+
+    quoted_arg = None
+    double_quoted_arg = None
+
+    for arg in string_task_split_input:
+        if quoted_arg is not None:
+            quoted_arg = "{} {}".format(quoted_arg, arg)
+
+            if arg.endswith("'"):
+                quoted_arg = quoted_arg.replace("'", "")
+                string_task_split_output.append(quoted_arg)
+                quoted_arg = None
+            elif arg.startswith("'"):
+                raise xtask.WrongTaskFormat(
+                    "Quoted argument is not properly closed", string_task
+                )
+
+        elif double_quoted_arg is not None:
+            double_quoted_arg = "{} {}".format(double_quoted_arg, arg)
+
+            if arg.endswith('"'):
+                string_task_split_output.append(double_quoted_arg)
+                double_quoted_arg = None
+            elif arg.startswith('"'):
+                raise xtask.WrongTaskArgs(
+                    "Double quoted argument is not properly closed", string_task
+                )
+
+        elif arg.startswith("'"):
+            quoted_arg = arg
+
+        elif arg.startswith('"'):
+            double_quoted_arg = arg
+
+        else:
+            string_task_split_output.append(arg)
+
+    if quoted_arg is not None:
+        raise xtask.WrongTaskFormat(
+            "Quoted argument is not properly closed", string_task
+        )
+
+    if double_quoted_arg is not None:
+        raise xtask.WrongTaskArgs(
+            "Double quoted argument is not properly closed", string_task
+        )
+
+    return string_task_split_output
