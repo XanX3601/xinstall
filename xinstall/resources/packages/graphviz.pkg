@@ -1,0 +1,10 @@
+INSTALL_TASKS:
+    git_clone_if_not_exists https://gitlab.com/graphviz/graphviz.git REPOS/graphviz
+    git_remove_changes REPOS/graphviz
+    git_update REPOS/graphviz
+    process autogen_graphviz start REPOS/graphviz ./autogen.sh
+    process autogen_graphviz wait
+    process autogen_graphviz success
+    config REPOS/graphviz --prefix=HOME/.local
+    make REPOS/graphviz
+    make REPOS/graphviz install
