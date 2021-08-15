@@ -129,3 +129,6 @@ export PATH="$CARGO_HOME/bin:$PATH"
 
 # pkg config
 export PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig"
+
+# aclocal
+export ACLOCAL_PATH="/usr/share/aclocal"

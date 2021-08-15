@@ -58,7 +58,13 @@ class Process(xtask.Task):
         command = args[1]
         args = list(args[2:])
 
-        if pexpect.which(command) is None:
+        if command.startswith("."):
+            command_path = directory_path / command
+            if not command_path.exists():
+                self._error("Cannot find command {}".format(command_path))
+            else:
+                command = str(command_path)
+        elif pexpect.which(command) is None:
             self._error("Unknown command '{}'".format(command))
             return False
 
