@@ -1,0 +1,12 @@
+INSTALL_TASKS:
+    git_clone_if_not_exists https://github.com/doxygen/doxygen.git REPOS/doxygen
+    git_remove_changes REPOS/doxygen
+    git_update REPOS/doxygen
+    remove_diretory_if_exists REPOS/doxyen/build
+    create_directory_if_not_exist REPOS/doxygen/build
+    cmake REPOS/doxygen/build -G 'Unix Makefiles' -DCMAKE_INSTALL_PREFIX=HOME/.local ..
+    make REPOS/doxygen/build
+    make REPOS/doxygen/build install
+
+DEPENDENCIES:
+    cmake
