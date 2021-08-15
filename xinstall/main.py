@@ -16,10 +16,11 @@ def cli():
 
 @cli.command()
 @click.argument("package")
-def install(package):
+@click.option("--dependencies/--no-dependencies", "-d/-nd", default=False)
+def install(package, dependencies):
     """Installs a package."""
     package = xpackage.LazyPackage(package)
-    installer = xinstaller.Installer(package, with_dependencies=True)
+    installer = xinstaller.Installer(package, with_dependencies=dependencies)
     try:
         installer.install()
     except xinstaller.InstallationIncomplete as e:
