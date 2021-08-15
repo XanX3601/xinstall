@@ -1,0 +1,13 @@
+INSTALL_TASKS:
+    git_clone_if_not_exists https://github.com/libffi/libffi.git REPOS/ffi
+    git_remove_changes REPOS/ffi
+    git_update REPOS/ffi
+    process autogen_ffi start REPOS/ffi ./autogen.sh
+    process autogen_ffi wait
+    process autogen_ffi success
+    config REPOS/ffi --prefix=HOME/.local
+    make REPOS/ffi
+    make REPOS/ffi install
+
+DEPENDENCIES:
+    texinfo
