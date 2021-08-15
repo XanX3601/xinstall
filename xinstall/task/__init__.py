@@ -21,3 +21,4 @@ from .Bootstrap import Bootstrap
 from .Cmake import Cmake
 from .SymLink import SymLink
 from .RemoveFileIfExists import RemoveFileIfExists
+from .Pip import Pip
