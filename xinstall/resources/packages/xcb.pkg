@@ -1,0 +1,13 @@
+INSTALL_TASKS:
+    download_file https://xcb.freedesktop.org/dist/libxcb-1.14.tar.gz TEMP/xcb.tar.gz
+    remove_directory_if_exists TEMP/libxcb-1.14
+    extract_tar_file TEMP/xcb.tar.gz TEMP
+    remove_directory_if_exists TARS/xcb
+    copy_directory TEMP/libxcb-1.14 TARS/xcb
+    config TARS/xcb --prefix=HOME/.local
+    make TARS/xcb
+    make TARS/xcb install
+
+DEPENDENCIES:
+   xcb-proto 
+   xau
