@@ -1,0 +1,9 @@
+INSTALL_TASKS:
+    git_clone_if_not_exists https://gitlab.gnome.org/GNOME/libxslt.git REPOS/xslt
+    git_remove_changes REPOS/xslt
+    git_update REPOS/xslt
+    process autogen_xslt start REPOS/xslt ./autogen.sh --prefix=HOME/local
+    process autogen_xslt wait
+    process autogen_xslt success
+    make REPOS/xslt
+    make REPOS/xslt install
