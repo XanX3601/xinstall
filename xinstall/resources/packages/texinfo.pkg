@@ -1,7 +1,7 @@
 INSTALL_TASKS:
     download_file http://ftp.gnu.org/gnu/texinfo/texinfo-6.8.tar.gz TEMP/texinfo.tar.gz
     remove_directory_if_exists TEMP/texinfo-6.8
-    extract_tar_file TEMPS/texinfo.tar.gz TEMP
+    extract_tar_file TEMP/texinfo.tar.gz TEMP
     remove_directory_if_exists TARS/texinfo
     copy_directory TEMP/texinfo-6.8 TARS/texinfo
     config TARS/texinfo --prefix=HOME/.local
