@@ -1,0 +1,9 @@
+INSTALL_TASKS:
+    download_file https://releases.pagure.org/xmlto/xmlto-0.0.28.tar.bz2 TEMP/xmlto.tar.bz2
+    remove_directory_if_exists TEMP/xmlto-0.0.28
+    extract_tar_file TEMP/xmlto.tar.bz2 TEMP
+    remove_directory_if_exists TARS/xmlto
+    copy_directory TEMP/xmlto-0.0.28 TARS/xmlto
+    config TARS/xmlto --prefix=HOME/.local
+    make TARS/xmlto
+    make TARS/xmlto install
