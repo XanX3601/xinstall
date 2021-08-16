@@ -3,7 +3,7 @@ INSTALL_TASKS:
     remove_directory_if_exists TEMP/openssl-1.1.1k 
     extract_tar_file TEMP/openssl.tar.gz TEMP
     remove_directory_if_exists TARS/openssl
-    copy_directory TEMP/openssl-1.1.1k TARS/openssl
+    copy_directory TEMP/openssl-1.1.1 TARS/openssl
     config TARS/openssl --prefix=HOME/.local
     make TARS/openssl
     make TARS/openssl install
