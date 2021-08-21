@@ -1,0 +1,5 @@
+INSTALL_TASKS:
+    git_clone_if_not_exists https://github.com/docbook/xslt10-stylesheets.git REPOS/xslt10-stylesheets
+    git_remove_changes REPOS/xslt10-stylesheets
+    git_update REPOS/xslt10-stylesheets
+    make REPOS/xslt10-stylesheets

@@ -22,4 +22,5 @@ from .Cmake import Cmake
 from .SymLink import SymLink
 from .RemoveFileIfExists import RemoveFileIfExists
 from .Pip import Pip
+from .Meson import Meson
 from .WrongTaskFormat import WrongTaskFormat

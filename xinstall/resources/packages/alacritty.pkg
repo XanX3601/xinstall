@@ -1,0 +1,6 @@
+INSTALL_TASKS:
+    
+DEPENDENCIES:
+    rustup
+    fontconfig
+    xcb

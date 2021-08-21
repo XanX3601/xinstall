@@ -1,0 +1,10 @@
+INSTALL_TASKS:
+    download_file https://github.com/xkbcommon/libxkbcommon/releases/download/xkbcommon-1.1.0/libxkbcommon-1.1.0.tar.xz TEMP/xkbcommon.tar.xz
+    remove_directory_if_exists TEMP/libxkbcommon-1.1.0
+    extract_tar_file TEMP/libxkbcommon.tar.xz TEMP
+
+DEPENDENCIES:
+    ninja
+    meson
+    xml2
+    wayland

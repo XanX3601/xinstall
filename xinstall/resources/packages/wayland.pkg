@@ -1,0 +1,11 @@
+INSTALL_TASKS:
+    git_clone_if_not_exists https://gitlab.freedesktop.org/wayland/wayland.git REPOS/wayland
+    git_remove_changes REPOS/wayland
+    git_update REPOS/wayland
+    meson REPOS/wayland build/ --prefix=HOME/.local
+
+DEPENDENCIES:
+    ffi
+    graphviz
+    doxygen
+    xslt
