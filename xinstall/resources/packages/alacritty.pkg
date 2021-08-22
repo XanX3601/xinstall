@@ -1,0 +1,5 @@
+CONFIG_TASKS:
+    create_directory_if_not_exist HOME/.config
+    create_directory_if_not_exist HOME/.config/alacritty
+    copy_resource alacritty.yml HOME/.config/alacritty/alacritty.yml
+    copy_resource dracula.yml HOME/.config/alacritty/dracula.yml

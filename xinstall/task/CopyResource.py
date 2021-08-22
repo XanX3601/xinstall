@@ -31,3 +31,5 @@ class CopyResource(xtask.Task):
             except Exception:
                 self._exception("An error occured during the copy")
                 return False
+
+            return True
