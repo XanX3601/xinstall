@@ -149,3 +149,6 @@ bar {
 
 default_border pixel 1
 default_floating_border pixel 1
+
+# lock
+bindsym $mod+Ctrl+l exec i3lock -i ~/.wallpaper.png
